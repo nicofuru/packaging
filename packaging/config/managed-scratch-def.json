@@ -1,0 +1,28 @@
+{
+  "orgName": "",
+  "edition": "Enterprise",
+  "username":"",
+  "features": ["PersonAccounts","EnableSetPasswordInApi", "HealthCloudAddOn", "HealthCloudPNMAddOn", "HealthCloudUser", "ContactsToMultipleAccounts"],
+  "settings": {
+    "lightningExperienceSettings": {
+      "enableS1DesktopEnabled": true
+    },
+    "pathAssistantSettings": {
+      "pathAssistantEnabled": true
+    },  
+    "chatterSettings":{
+      "enableChatter" : true
+    },
+    "accountSettings": {
+      "enableRelateContactToMultipleAccounts": true,
+      "enableAccountTeams": true
+    },
+    "mobileSettings": {
+      "enableS1EncryptedStoragePref2": false
+    },
+    "customAddressFieldSettings": {
+      "enableCustomAddressField": true
+    }
+  }
+}
+
