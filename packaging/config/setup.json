@@ -1,27 +1,27 @@
 {
   "partnerBussinessOrg": {
-    "orgAlias": "ArcsonaPBO"
+    "orgAlias": null
   },
   "unmanagedScratchOrg": {
-    "orgAlias": "unmanagedScratchOrg",
-    "username": "claimscloudv14_1@arcsona.com",
-    "duration": "30",
-    "loginUrl": "https://business-computing-7101.scratch.my.salesforce.com/",
-    "password": "puKtu@hg0xlqj"
+    "orgAlias": null,
+    "username": null,
+    "duration": null,
+    "loginUrl": null,
+    "password": null
   },
   "sourceOrg": {
-    "orgAlias": "claimsOrg"
+    "orgAlias": null
   },
   "managedScratchOrg": {
-    "password": "sWkq3tb&vaegc",
-    "duration": "30",
-    "username": "claimscloudv14managed@arcsona.com",
-    "orgAlias": "managedScratchOrg",
-    "loginUrl": "https://force-customization-9225.scratch.my.salesforce.com/"
+    "password": null,
+    "duration": null,
+    "username": null,
+    "orgAlias": null,
+    "loginUrl": null
   },
   "packageConfig": {
     "packageId": null,
-    "packageName": "ClaimsCloud",
-    "installationKey": "test1234"
+    "packageName": null,
+    "installationKey": null
   }
 }
