@@ -5,7 +5,7 @@ function InitialSetup {
         [string]$configPath    
     )
     $orgAlias = Read-Host "Enter Org Alias"
-    $test = Read-Host "Enter y if you are logging to a sandbox or n otherwise"
+    $test = Read-Host "Enter y if you are logging to a sandbox, n for production and c for providing URL"
 
     if (Test-Path $configPath) {
         # Get the content from the JSON file

@@ -115,7 +115,22 @@ function CreatePackageVersion {
 
     Push-Location $dxProjectDirectory
 
-    $packages = sf package version create --package $packageName --installation-key $installationKey --target-dev-hub $partnerBussinessOrgAlias  --code-coverage --wait 30 --json
+    do {
+        # Prompt the user for input
+        $skipAncestor = Read-Host "Enter 'y' to skip ancestor check, 'n' otherwise"
+    
+        if ($skipAncestor -eq 'y') {
+            $packages = sf package version create --package $packageName --installation-key $installationKey --target-dev-hub $partnerBussinessOrgAlias --code-coverage --wait 30 --skipancestorcheck --json 
+            break  # Exit the loop if a valid option is selected
+        }
+        elseif ($skipAncestor -eq 'n') {
+            $packages = sf package version create --package $packageName --installation-key $installationKey --target-dev-hub $partnerBussinessOrgAlias --code-coverage --wait 30 --json
+            break  # Exit the loop if a valid option is selected
+        }
+        else {
+            Write-Host 'Invalid Option. Please enter either ''y'' or ''n''.'
+        }
+    } while ($true)
 
     Pop-Location
 
