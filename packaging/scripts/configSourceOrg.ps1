@@ -54,6 +54,8 @@ function LoginToOrg{
         $url = 'https://test.salesforce.com'
     }elseif($test -eq 'n'){
         $url = 'https://login.salesforce.com'
+    }elseif($test -eq 'c'){
+        $url = Read-Host "Enter custom URL"
     }else{
         Write-Host 'Invalid Option'
     }
