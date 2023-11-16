@@ -134,7 +134,8 @@ function CreatePackageVersion {
 
     Pop-Location
 
-    Set-Content -Path "packaging/packageResult.json" -Value $packages -Force
+    $packageResult = $packages | ConvertTo-Json
+    Set-Content -Path "packaging/packageResult.json" -Value $packageResult -Force
 
     if ($packages.result.SubscriberPackageVersionId) {
         $config.packageConfig.packageId = $packages.result.SubscriberPackageVersionId
