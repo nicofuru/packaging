@@ -120,7 +120,7 @@ function CreatePackageVersion {
         $skipAncestor = Read-Host "Enter 'y' to skip ancestor check, 'n' otherwise"
     
         if ($skipAncestor -eq 'y') {
-            $packages = sf package version create --package $packageName --installation-key $installationKey --target-dev-hub $partnerBussinessOrgAlias --code-coverage --wait 30 --skipancestorcheck --json 
+            $packages = sf package version create --package $packageName --installation-key $installationKey --target-dev-hub $partnerBussinessOrgAlias --code-coverage --wait 30 --skip-ancestor-check --json 
             break  # Exit the loop if a valid option is selected
         }
         elseif ($skipAncestor -eq 'n') {
