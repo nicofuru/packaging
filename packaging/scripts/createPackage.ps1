@@ -209,7 +209,18 @@ function InstallPackage {
 
         Pop-Location
 
-        Write-Host -ForegroundColor DarkGreen "Installation ended with result: $installationResult"
+
+        Pop-Location
+        $installationResultObject = $installationResult | ConvertFrom-Json
+        
+        if($installationResultObject.result.Status -eq 'SUCCESS'){
+            $config.managedScratchOrg.installedPackage = $packageVersionId
+            Write-Host -ForegroundColor DarkGreen "Installation succeded!"
+        }else{
+            Write-Host -ForegroundColor DarkRed "Installation failed, check packaging\installationResults.json"
+        }
+
+        $installationResult | Set-Content -Path 'packaging\installationResults.json' -Force
 
     }else{
         Write-Host "Missing package Id or installation key in config/setup.json file"
