@@ -228,6 +228,46 @@ function InstallPackage {
     }
 }
 
+function UninstallPackage {
+    
+    Write-Host -ForegroundColor DarkGreen "Starting package uninstall..."
+    $config = Get-Config
+    if ($null -eq $config) {
+        Write-Host 'Configuration file missing'
+        return
+    }
+
+    $packageVersionId = $config.managedScratchOrg.installedPackage
+    
+    if($packageVersionId && $installationKey){
+
+        $dxProjectDirectory = "./DXproject"
+
+        Push-Location $dxProjectDirectory
+        
+        $uninstallationResult = sf package uninstall --package $packageVersionId --target-org 'managedScratchOrg' --wait 15 --json 
+
+        Pop-Location
+        $uninstallationResultObject = $uninstallationResult | ConvertFrom-Json
+        
+        if($uninstallationResultObject.result.Status -eq 'SUCCESS'){
+
+            Add-Member -InputObject $config.managedScratchOrg -MemberType NoteProperty -Name 'installedPackage' -Value $null -Force
+            Write-Host -ForegroundColor DarkGreen "uninstall succeded!"
+            Write-Config -config $config
+        }else{
+            Write-Host -ForegroundColor DarkRed "Uninstall failed, check packaging\uninstallationResults.json"
+        }
+
+        $uninstallationResult | Set-Content -Path 'packaging\uninstallationResults.json' -Force
+
+
+    }else{
+        Write-Host "Missing installed package Id or installation key in config/setup.json file"
+        return
+    }
+}
+
 
 do {
     Clear-Host
@@ -238,7 +278,8 @@ do {
     Write-Host "4. Create Package Version"
     Write-Host "5. Promote Package"
     Write-Host "6. Install Package"
-    Write-Host "7. Exit"
+    Write-Host "7. Uninstall Package"
+    Write-Host "8. Exit"
 
     $choice = Read-Host "Enter choice [1-8]"
 
@@ -249,7 +290,8 @@ do {
         '4' { CreatePackageVersion }
         '5' { PromotePackage }
         '6' { InstallPackage }
-        '7' { exit }
+        '7' { UninstallPackage }
+        '8' { exit }
         default { Write-Host "Invalid choice, please select a number between 1-8." }
     }
     
