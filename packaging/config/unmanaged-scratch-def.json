@@ -22,6 +22,9 @@
     },
     "customAddressFieldSettings": {
       "enableCustomAddressField": true
+    },
+    "knowledgeSettings": {
+      "enableLightningKnowledge": true
     }
   }
 }
