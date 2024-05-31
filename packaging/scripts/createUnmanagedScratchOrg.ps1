@@ -140,7 +140,25 @@ function CreateScratchOrg {
     # Save updated config
     $config | ConvertTo-Json -Depth 2 | Set-Content $configPath
 
-    InstallHealthCloud -orgAlias $orgAlias
+    do {
+        Write-Host "Do you want to install HealthCloud?"
+        Write-Host "y - Yes"
+        Write-Host "n - No"
+    
+        $choice = Read-Host "Enter your choice"
+    
+        switch ($choice) {
+            "y" {
+                InstallHealthCloud -orgAlias $orgAlias
+            }
+            "n" {
+                
+            }
+            default {
+                Write-Host "Invalid choice, please try again."
+            }
+        }
+    } while ($choice -ne "y" -and $choice -ne "n")
 
 }
 
